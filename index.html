@@ -91,19 +91,13 @@
                 // set heading element to totalExpense
                 headingEl.textContent = someText;
 
-                // show the table
-                const data1 = allExpense[0];
-                const data2 = allExpense[1];
+                const allExpenseHTML = allExpense.map(expenseItem => { 
+                    return `<div>${expenseItem.amount} is for ${expenseItem.desc}</div>`
+                });
 
-                const data1Text = `${data1.desc} is for ${data1.amount}`;
-                const data2Text = `${data2.desc} is for ${data2.amount}`;
+                joinedExpenses = allExpenseHTML.join("");
 
-                const tableText = `
-                <div>${data1Text}</div>
-                <div>${data2Text}</div>
-                `;
-
-                expenseTableEl.innerHTML = tableText;
+                expenseTableEl.innerHTML = joinedExpenses;
 
             }
             
