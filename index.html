@@ -25,10 +25,13 @@
         <h1 id="heading"></h1>
         
     <input id ="inputAmount" type ="text">
+    <input id="inputDesc" type="text">
     <br>
         
         
     <button id="btnCounter">+</button>
+
+    <div id="expenseTable"></div>
         
     
         <script>
@@ -36,27 +39,68 @@
             //get heading element
             const headingEl = document.querySelector("#heading");
 
+            // get desc refernce
+            const desc = document.querySelector("#inputDesc");
+
+            // ref to input amount
+            const inputAmount = document.querySelector("#inputAmount");
+
+            // ref to table element
+            const expenseTableEl = document.querySelector("#expenseTable");
+
             // start totalExpense at 0
             let totalExpense = 0;
             
             // setting the heading value
             headingEl.textContent = totalExpense;
+
+            // all Expenses at one Place
+            const allExpense = [];
             
             // onButtonClick add inputAmount to totalExpense
             function addExpense(){
+
+                // read item name
+                const expenseItem = {};
                 
                 // read value from input amount
-                const inputAmount = document.querySelector("#inputAmount");
                 const inputNumber = inputAmount.value;
+
+                // read desc from inputDesc
+                let inputDesc = desc.value;
             
                 //convert it to number
                 const expense = parseInt(inputNumber, 10);
+
+                // put it in object
+                expenseItem.desc = inputDesc;
+                expenseItem.amount = expense;
+
+                // push to array
+                allExpense.push(expenseItem);
+                
+                console.clear();
+                console.table(allExpense);
                 
                 //add it to totalExpense
                 totalExpense = totalExpense + expense;
 
+                //write string for total expense
+                const someText = `Total Expense is ${totalExpense}`;
+
                 // set heading element to totalExpense
-                headingEl.textContent = totalExpense;
+                headingEl.textContent = someText;
+
+                // show the table
+                const data1 = allExpense[0];
+
+                const data1Text = `${expense} is for ${inputDesc}`;
+
+                expenseTableEl.textContent = data1Text;
+
+
+
+
             }
 
             
