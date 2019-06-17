@@ -105,6 +105,7 @@
                 // put it in object
                 expenseItem.desc = inputDesc;
                 expenseItem.amount = inputNumber;
+                expenseItem.moment = new Date();
  
                 // push to array
                 allExpense.push(expenseItem);
@@ -117,6 +118,16 @@
 
                 //write string for total expense
                 const someText = `Total Expense is ${totalExpense}`;
+
+                // Get Date String
+            
+                function getDateString(moment) {
+                return moment.toLocaleDateString('en-US', {
+					year: 'numeric',
+					month: 'long',
+                    day: 'numeric'})
+                }
+                    
 
                 // set heading element to totalExpense
                 headingEl.textContent = someText;
@@ -136,12 +147,16 @@
             element.addEventListener("click", addExpense, false);
 
             // view layer
-            function createListItem({ desc, amount })
-            {
+            function createListItem({ desc, amount, moment })   {
                 return `<li class="list-group-item d-flex justify-content-between">
 							<div class="d-flex flex-column">
                                     ${desc}
-								<small class="text-muted">March 11, 2019</small>
+								<small class="text-muted">
+                                    ${moment.toLocaleDateString('en-US', {
+					year: 'numeric',
+					month: 'long',
+                    day: 'numeric'})}
+                                </small>
 							</div>
 							<div>
 								<span class="px-5">
